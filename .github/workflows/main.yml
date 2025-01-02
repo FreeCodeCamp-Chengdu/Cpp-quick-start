@@ -25,7 +25,7 @@ jobs:
       - name: Find built file
         shell: pwsh
         run: |
-          echo "FILE_PATH=$(Get-ChildItem -Path build -Recurse -Filter release -File -Name)" >> $GITHUB_ENV
+          echo "FILE_PATH=$(Get-ChildItem -Path build -Recurse -File -Name | Where-Object { $_ -notmatch '^\.' })" >> $GITHUB_ENV
 
       - if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
