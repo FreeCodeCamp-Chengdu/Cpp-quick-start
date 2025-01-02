@@ -2,15 +2,28 @@
 
 The simplest C/C++ project template for beginners.
 
-## Install minimal All-in-One Development Environment
+[![CI & CD](https://github.com/FreeCodeCamp-Chengdu/Cpp-quick-start/actions/workflows/main.yml/badge.svg)][1]
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)][2]
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)][3]
+
+## Use this template project in Cloud
+
+1.  Click the **[<kbd>Use this template</kbd>][4] button** on the top of this GitHub repository's home page, then create your own repository in your account/organization namespace
+
+2.  Click the **[<kbd>Open in GitHub codespaces</kbd>][2] button** on the top of ReadMe file, then an **online VS Code development environment** will be started immediately
+
+3.  Run following command in VS Code terminal to install XMake:
+    ```bash
+    curl -fsSL https://xmake.io/shget.text | bash
+    ```
+
+## Install minimal All-in-One Development Environment in your computer
 
 ### Windows
 
 ```powershell
 winget install BrechtSanders.WinLibs.POSIX.MSVCRT Xmake-io.Xmake Microsoft.VisualStudioCode
-# If you have building errors with XMake & MinGW, the command below might help you to fix it,
-# and "somehash" in the following path is a placeholder for the actual hash of the installed package
-xmake f -p mingw --mingw=%LOCALAPPDATA%\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.MSVCRT_Microsoft.Winget.Source_somehash\mingw64 -c
 code --install-extension tboox.xmake-vscode
 code --install-extension ms-vscode.cpptools-extension-pack
 ```
@@ -33,7 +46,7 @@ code --install-extension tboox.xmake-vscode
 code --install-extension ms-vscode.cpptools-extension-pack
 ```
 
-## XMake FAQ
+## XMake usage
 
 > If you want to known more usage about xmake, please see https://xmake.io
 
@@ -43,19 +56,26 @@ You can enter the project directory firstly before building project.
 cd projectdir
 ```
 
-1. How to build project?
+### 1. How to build project?
 
 ```bash
 xmake
 ```
 
-2. How to configure project?
+> If you have building errors with XMake & MinGW, the command below might help you to fix it,
+> and "somehash" in the following path is a placeholder for the actual hash of the installed package
+>
+> ```powershell
+> xmake f -p mingw --mingw=%LOCALAPPDATA%\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.MSVCRT_Microsoft.Winget.Source_somehash\mingw64 -c
+> ```
+
+### 2. How to configure project?
 
 ```bash
 xmake f -p [macosx|linux|iphoneos ..] -a [x86_64|i386|arm64 ..] -m [debug|release]
 ```
 
-3. Where is the build output directory?
+### 3. Where is the build output directory?
 
 The default output directory is `./build` and you can configure the output directory.
 
@@ -64,21 +84,21 @@ xmake f -o outputdir
 xmake
 ```
 
-4. How to run and debug target after building project?
+### 4. How to run and debug target after building project?
 
 ```bash
 xmake run [targetname]
 xmake run -d [targetname]
 ```
 
-5. How to install target to the system directory or other output directory?
+### 5. How to install target to the system directory or other output directory?
 
 ```bash
 xmake install
 xmake install -o installdir
 ```
 
-6. Add some frequently-used compilation flags in `xmake.lua`
+### 6. Add some frequently-used compilation flags in `xmake.lua`
 
 ```lua
 @code
@@ -112,3 +132,8 @@ xmake install -o installdir
    add_ldflags("-L/usr/local/lib", "-lpthread", {force = true})
 @endcode
 ```
+
+[1]: https://github.com/FreeCodeCamp-Chengdu/Cpp-quick-start/actions/workflows/main.yml
+[2]: https://codespaces.new/FreeCodeCamp-Chengdu/Cpp-quick-start
+[3]: https://gitpod.io/?autostart=true#https://github.com/FreeCodeCamp-Chengdu/Cpp-quick-start
+[4]: https://github.com/new?template_name=Cpp-quick-start&template_owner=FreeCodeCamp-Chengdu

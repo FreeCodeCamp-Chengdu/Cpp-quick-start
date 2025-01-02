@@ -1,0 +1,35 @@
+name: CI & CD
+on:
+  push:
+
+jobs:
+  Build_and_Test:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+
+      - run: xmake  &&  xmake run
+
+      - name: Find built file
+        shell: pwsh
+        run: |
+          echo "FILE_PATH=$(Get-ChildItem -Path build -Recurse -File -Name | Where-Object { $_ -notmatch '^\.' } | ForEach-Object { $_ -replace '\\', '/' })" >> $env:GITHUB_ENV
+
+      - if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{ !contains(github.ref, 'refs/heads/master') }}
+          generate_release_notes: true
+          files: build/${{ env.FILE_PATH }}
