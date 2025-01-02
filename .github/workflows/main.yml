@@ -1,0 +1,15 @@
+name: CI & CD
+on:
+  push:
+
+jobs:
+  Build_and_Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+
+      - run: xmake  &&  xmake run

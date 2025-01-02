@@ -2,15 +2,14 @@
 
 The simplest C/C++ project template for beginners.
 
+[![CI & CD](https://github.com/FreeCodeCamp-Chengdu/Cpp-quick-start/actions/workflows/main.yml/badge.svg)][1]
+
 ## Install minimal All-in-One Development Environment
 
 ### Windows
 
 ```powershell
 winget install BrechtSanders.WinLibs.POSIX.MSVCRT Xmake-io.Xmake Microsoft.VisualStudioCode
-# If you have building errors with XMake & MinGW, the command below might help you to fix it,
-# and "somehash" in the following path is a placeholder for the actual hash of the installed package
-xmake f -p mingw --mingw=%LOCALAPPDATA%\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.MSVCRT_Microsoft.Winget.Source_somehash\mingw64 -c
 code --install-extension tboox.xmake-vscode
 code --install-extension ms-vscode.cpptools-extension-pack
 ```
@@ -33,7 +32,7 @@ code --install-extension tboox.xmake-vscode
 code --install-extension ms-vscode.cpptools-extension-pack
 ```
 
-## XMake FAQ
+## XMake usage
 
 > If you want to known more usage about xmake, please see https://xmake.io
 
@@ -43,19 +42,26 @@ You can enter the project directory firstly before building project.
 cd projectdir
 ```
 
-1. How to build project?
+### 1. How to build project?
 
 ```bash
 xmake
 ```
 
-2. How to configure project?
+> If you have building errors with XMake & MinGW, the command below might help you to fix it,
+> and "somehash" in the following path is a placeholder for the actual hash of the installed package
+>
+> ```powershell
+> xmake f -p mingw --mingw=%LOCALAPPDATA%\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.MSVCRT_Microsoft.Winget.Source_somehash\mingw64 -c
+> ```
+
+### 2. How to configure project?
 
 ```bash
 xmake f -p [macosx|linux|iphoneos ..] -a [x86_64|i386|arm64 ..] -m [debug|release]
 ```
 
-3. Where is the build output directory?
+### 3. Where is the build output directory?
 
 The default output directory is `./build` and you can configure the output directory.
 
@@ -64,21 +70,21 @@ xmake f -o outputdir
 xmake
 ```
 
-4. How to run and debug target after building project?
+### 4. How to run and debug target after building project?
 
 ```bash
 xmake run [targetname]
 xmake run -d [targetname]
 ```
 
-5. How to install target to the system directory or other output directory?
+### 5. How to install target to the system directory or other output directory?
 
 ```bash
 xmake install
 xmake install -o installdir
 ```
 
-6. Add some frequently-used compilation flags in `xmake.lua`
+### 6. Add some frequently-used compilation flags in `xmake.lua`
 
 ```lua
 @code
@@ -112,3 +118,5 @@ xmake install -o installdir
    add_ldflags("-L/usr/local/lib", "-lpthread", {force = true})
 @endcode
 ```
+
+[1]: https://github.com/FreeCodeCamp-Chengdu/Cpp-quick-start/actions/workflows/main.yml
