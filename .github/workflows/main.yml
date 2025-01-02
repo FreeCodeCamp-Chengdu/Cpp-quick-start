@@ -24,7 +24,7 @@ jobs:
       - name: Find built file
         shell: pwsh
         run: |
-          echo "FILE_PATH=$(Get-ChildItem -Path build -Recurse -File -Name | Where-Object { $_ -notmatch '^\.' } | ForEach-Object { Join-Path -Path 'build' -ChildPath $_ })" >> $env:GITHUB_ENV
+          echo "FILE_PATH=$(Get-ChildItem -Path build -Recurse -File -Name | Where-Object { $_ -notmatch '^\.' } | ForEach-Object { $_ -replace '\\', '/' })" >> $env:GITHUB_ENV
 
       - if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
@@ -32,4 +32,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ !contains(github.ref, 'refs/heads/master') }}
           generate_release_notes: true
-          files: ${{ env.FILE_PATH }}
+          files: build/${{ env.FILE_PATH }}
