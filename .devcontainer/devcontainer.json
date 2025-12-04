@@ -6,8 +6,13 @@
       "extensions": [
         "tboox.xmake-vscode",
         "ms-vscode.cpptools-extension-pack",
+        "yzhang.markdown-all-in-one",
         "redhat.vscode-yaml",
-        "GitHub.copilot"
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        "github.vscode-github-actions",
+        "github.copilot"
       ]
     }
   }

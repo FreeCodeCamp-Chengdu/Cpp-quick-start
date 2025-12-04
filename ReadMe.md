@@ -13,11 +13,6 @@ The simplest C/C++ project template for beginners.
 
 2.  Click the **[<kbd>Open in GitHub codespaces</kbd>][2] button** on the top of ReadMe file, then an **online VS Code development environment** will be started immediately
 
-3.  Run following command in VS Code terminal to install XMake:
-    ```bash
-    curl -fsSL https://xmake.io/shget.text | bash
-    ```
-
 ## Install minimal All-in-One Development Environment in your computer
 
 ### Windows
