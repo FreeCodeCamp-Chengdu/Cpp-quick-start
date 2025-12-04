@@ -1,0 +1,14 @@
+{
+  "name": "C++",
+  "build": { "dockerfile": "Dockerfile" },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "tboox.xmake-vscode",
+        "ms-vscode.cpptools-extension-pack",
+        "redhat.vscode-yaml",
+        "GitHub.copilot"
+      ]
+    }
+  }
+}
